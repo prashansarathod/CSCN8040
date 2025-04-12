@@ -20,6 +20,25 @@ This project uses AI and statistical techniques to identify high-priority region
 - `ui.py` – Streamlit dashboard (optional)
 - `requirements.txt` – Python package dependencies
 
+
+---
+
+### A. `datawrang.ipynb` – Data Wrangling
+- Cleans and merges datasets
+- Simulates household-level features
+- Calculates `Subsidy Priority Score`
+
+### B. `unit4.ipynb` – Statistical Testing
+- Validates PM₂.₅ as a pollution proxy
+- Performs:
+  - Pearson correlation (ρ = 0.9998)
+  - Hypothesis testing vs. EPA standards
+
+### C. `unit5.ipynb` – Model Training
+- Builds a `RandomForestRegressor`
+- Predicts subsidy priority scores
+- Outputs model performance and plots
+
 ---
 
 ## ⚙️ Setup and Installation
@@ -42,24 +61,6 @@ venv\Scripts\activate        # Windows
 ```bash
 pip install -r requirements.txt
 ```
-
----
-
-### A. `datawrang.ipynb` – Data Wrangling
-- Cleans and merges datasets
-- Simulates household-level features
-- Calculates `Subsidy Priority Score`
-
-### B. `unit4.ipynb` – Statistical Testing
-- Validates PM₂.₅ as a pollution proxy
-- Performs:
-  - Pearson correlation (ρ = 0.9998)
-  - Hypothesis testing vs. EPA standards
-
-### C. `unit5.ipynb` – Model Training
-- Builds a `RandomForestRegressor`
-- Predicts subsidy priority scores
-- Outputs model performance and plots
 
 ---
 
