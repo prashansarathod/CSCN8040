@@ -19,30 +19,7 @@ This project uses AI and statistical techniques to identify high-priority region
 - `unit5.ipynb` – Model building and visualization
 - `ui.py` – Streamlit dashboard (optional)
 - `requirements.txt` – Python package dependencies
-
-
 ---
-
-### A. `datawrang.ipynb` – Data Wrangling
-- Cleans and merges datasets
-- Simulates household-level features
-- Calculates `Subsidy Priority Score`
-
-### B. `unit4.ipynb` – Statistical Testing
-- Validates PM₂.₅ as a pollution proxy
-- Performs:
-  - Pearson correlation (ρ = 0.9998)
-  - Hypothesis testing vs. EPA standards
-
-### C. `unit5.ipynb` – Model Training
-- Builds a `RandomForestRegressor`
-- Predicts subsidy priority scores
-- Outputs model performance and plots
-
----
-
-## ⚙️ Setup and Installation
-
 Make sure you have **Python 3.9+** installed.
 
 
@@ -62,12 +39,47 @@ venv\Scripts\activate        # Windows
 pip install -r requirements.txt
 ```
 
+
+---
+# 🔄 Execution Order & Notebook Purpose
+
+This project includes four core files: three Jupyter notebooks and one Streamlit dashboard. Below is the required execution order and purpose of each component.
+
 ---
 
-## 🖥️ Optional: Run the Interactive Dashboard
+## 1️⃣ merged_data.ipynb – Data Preparation & Feature Engineering
+- **Purpose:** Creates the full modeling dataset
+- **Loads:**
+  - `pm25_combined.csv`: Aggregated PM2.5 values (e.g., from AL/CA)
+- **Simulates:**
+  - `Wood_Usage_%` per county
+  - `Avg_Income_Bracket` per county
+- **Engineers:**
+  - `Subsidy_Priority_Score` using PM2.5, income, wood usage
+- **Saves:**
+  - `./data/merged_subsidy_priority_data.csv`
+- ✅ **Optional** since already created by the ipynb and uploaded "merged_subsidy_priority_data.csv"  inside `data/`
 
-To launch the Streamlit-based UI:
+---
 
+## 2️⃣ unit5.ipynb – Model Training & Evaluation
+- **Purpose:** Builds and evaluates the Random Forest model
+- **Loads:**
+  - `./data/merged_subsidy_priority_data.csv`
+- **Performs:**
+  - Random Forest Regression
+  - Calculates R², MAE, MSE
+  - Feature importance chart
+  - Confidence estimation using std. dev. across trees
+- ✅ **Run after Step 1**
+
+---
+
+## 3️⃣ ui.py – Streamlit Dashboard
+- **Purpose:** User interface for live predictions and policy suggestions
+- **Runs a retrained Random Forest** based on user input
+- **No pre-saved model needed** – training happens instantly from CSV
+- **To run:**
 ```bash
 streamlit run ui.py
 ```
@@ -75,3 +87,10 @@ streamlit run ui.py
 - Select your county and input values
 - Get real-time subsidy score predictions
 - Includes model confidence and policy advice
+---
+
+
+
+
+
+
